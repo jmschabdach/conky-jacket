@@ -1,0 +1,84 @@
+# Jacket Weather for Linux
+# Version 0.1
+# Jenna Schabdach
+# Tells you if the weather is jacket-worthy. User settings can be specified below.
+
+# User Settings
+HOT=80
+COLD=65
+
+WINDLOW=15
+WINDHIGH=30
+WINDREALLY=77
+
+HUMIDLOW=45
+HUMIDHIGH=70
+
+METRIC=0 # default is 0 for F; 1 for C
+
+# Window Junk
+own_window yes
+own_window_type desktop 
+own_window_transparent yes
+# Borrowed
+##############################################
+# Compositing tips:
+# Conky can play strangely when used with
+# different compositors. I have found the
+# following to work well, but your mileage
+# may vary. Comment/uncomment to suit.
+##############################################
+## no compositor
+#own_window_type override
+#own_window_argb_visual no
+
+## xcompmgr
+#own_window_type override
+#own_window_argb_visual yes
+
+## cairo-compmgr
+own_window_type desktop
+own_window_argb_visual no
+##############################################
+own_window_hints undecortate,sticky,skip_taskbar,skip_pager,below
+
+# Program Variables
+double_buffer yes
+update_interval 1  # minutes
+total_run_times 0
+
+# Appearance
+background yes
+alignment bottom_right
+gap_x 20
+gap_y 20
+draw_shades no
+draw_outline no
+use_xft yes
+xftfont Cabin:size=16
+xftalphia 0.8
+use_spacer left
+pad_percents 3
+minimum_size 500 300
+maximum_size 500
+
+# Colors
+default_color white
+color0 ffffff # White
+color1 b8b8b8 # Gray
+color2 f87217 # Pumpkin Orange
+
+## Philadelphia, PA
+ # [url]http://www.accuweather.com/en/us/philadelphia-pa/19107/weather-forecast/350540[/url]
+ # ${tztime US/Eastern %m/%d/%y - %H:%M}
+
+TEXT
+
+${alignr}${color0}You might need a jacket.
+${alignr}${color1}It's October and I still don't work.
+
+${color2}Philadelphia, PA${goto 200}${tztime US/Central %m/%d/%y - %H:%M}
+${color0}Weather
+${texeci 1300 curl -s "http://www.accuweather.com/en/us/philadelphia-pa/19107/weather-forecast/350540" -o ~/.cache/weather.xml}
+${color1}${execi 1300 grep}
+
