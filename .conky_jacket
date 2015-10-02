@@ -56,7 +56,7 @@ draw_shades no
 draw_outline no
 use_xft yes
 xftfont Cabin:size=16
-xftalphia 0.8
+xftalpha 0.8
 use_spacer left
 pad_percents 3
 minimum_size 500 300
@@ -77,8 +77,9 @@ TEXT
 ${alignr}${color0}You might need a jacket.
 ${alignr}${color1}It's October and I still don't work.
 
-${color2}Philadelphia, PA${goto 200}${tztime US/Central %m/%d/%y - %H:%M}
+${color2}Philadelphia, PA${goto 200}${time %m/%d/%y - %H:%M}
 ${color0}Weather
-${texeci 1300 curl -s "http://www.accuweather.com/en/us/philadelphia-pa/19107/weather-forecast/350540" -o ~/.cache/weather.xml}
+# ${texeci 1300 curl -s "http://www.accuweather.com/en/us/philadelphia-pa/19107/weather-forecast/350540" | }
+${execi 500 bash }
 ${color1}${execi 1300 grep}
 
