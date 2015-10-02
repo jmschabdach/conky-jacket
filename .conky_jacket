@@ -79,6 +79,8 @@ ${alignr}${color1}It's October and I still don't work.
 
 ${color2}Philadelphia, PA${goto 200}${time %m/%d/%y - %H:%M}
 ${color0}Weather
-${texeci 1500 curl -s "http://weather.yahooapis.com/forecastrss?w=19104&u=${UNITTYPE}" -o ~/.cache/weather2.xml}
-${color1}${execi 1500 grep "yweather:condition" ~/.cache/weather2.xml | grep -o "temp=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*"}
-
+${texeci 1500 curl -s "http://weather.yahooapis.com/forecastrss?w=2471217&u=${UNITTYPE}" -o ~/.cache/weather2.xml}
+It is ${color1}${execi 1500 grep "yweather:condition" ~/.cache/weather2.xml | grep -o "temp=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*"}${color} degrees
+with ${color1}${execi 1500 grep "yweather:condition" ~/.cache/weather2.xml | grep -o "humid=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*"}${color} percent humidity
+and ${color1}${execi 1500 grep "yweather:condition" ~/.cache/weather2.xml | grep -o "speed=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*"}${color} winds info
+# chance of rain?
